@@ -342,11 +342,104 @@
             .price-card.featured { transform: none; }
             h1 { font-size: 2.5rem; }
         }
+      
+ 
+  .main-nav {
+    background-color: var(--white);
+    padding: 20px 0;
+    box-shadow: 0 2px 15px rgba(128, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-family: 'Comfortaa', sans-serif;
+  }
+
+  .nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+
+  .logo-text {
+    font-weight: bold;
+    color: var(--deep-accent);
+    font-size: 1.2rem;
+    letter-spacing: -0.5px;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--accent-color);
+  }
+
+  /* Адаптивность для мобильных */
+  @media (max-width: 768px) {
+    .nav-container {
+      flex-direction: column;
+      gap: 15px;
+    }
+    .nav-links {
+      gap: 20px;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+    }
+    .logo-text {
+      font-size: 1.1rem;
+    }
+  }
+
     </style>
 </head>
 <body>
 
     <header class="hero">
+        <!-- Блок навигации -->
+<nav class="main-nav">
+  <div class="nav-container">
+    <div class="logo">
+      <span class="logo-icon">🌿</span>
+      <span class="logo-text">Scratch Пространство</span>
+    </div>
+    
+    <ul class="nav-links">
+      <li><a href="#base-course">Базовый курс</a></li>
+      <li><a href="#master-class">Мастер-класс</a></li>
+      <li><a href="#pricing">Стоимость обучения</a></li>
+    </ul>
+  </div>
+</nav>
+
+
         <div class="container">
             <h1>Заботливое образование</h1>
             <p>Программируем, играя — мыслим смело! Первые шаги в IT через создание мультфильмов и квестов.
