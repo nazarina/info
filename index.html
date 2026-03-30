@@ -6,14 +6,18 @@
     <title>Заботливое образование | Scratch</title>
     <style>
         :root {
+            /* Чистые фирменные цвета */
             --soft-pink: #fff0f3; 
             --soft-purple: #f3f0ff; 
-            --accent-color: #008080; 
-            --deep-accent: #800000; 
+            --accent-color: #008080; /* Бирюзовый */
+            --deep-accent: #800000; /* Бордовый */
             --text-main: #4a4a4a; 
             --white: #ffffff;
             --button-grad: linear-gradient(to top, #800000 0%, #d63031 100%);
             --hero-grad: linear-gradient(135deg, #f3f0ff 0%, #fff0f3 100%);
+            --icon-grad-1: linear-gradient(135deg, #008080, #00b3b3);
+            --icon-grad-2: linear-gradient(135deg, #d63031, #800000);
+            --icon-grad-3: linear-gradient(135deg, #6c5ce7, #a29bfe);
         }
 
         * {
@@ -26,212 +30,282 @@
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             color: var(--text-main);
             line-height: 1.6;
-            background-color: #fdfdfd;
+            background-color: var(--white);
             overflow-x: hidden;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
         /* Герой-баннер */
+        /* Герой-баннер */
         .hero {
             background: var(--hero-grad);
-            padding: 100px 20px;
+            padding: 120px 20px;
             text-align: center;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0, 128, 128, 0.05);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '🚀';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            font-size: 3rem;
+            opacity: 0.2;
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '👾';
+            position: absolute;
+            bottom: 40px;
+            right: 10%;
+            font-size: 3rem;
+            opacity: 0.2;
+            animation: floating 3s ease-in-out infinite reverse;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
         }
 
         h1 {
             color: var(--deep-accent);
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             margin-bottom: 20px;
             font-weight: 800;
+            letter-spacing: -1px;
+            max-width: 950px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero p {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--accent-color);
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto 40px;
+            font-weight: 500;
         }
 
+        /* Секции */
         .section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
 
         .section-title {
             color: var(--deep-accent);
             text-align: center;
-            font-size: 2.4rem;
-            margin-bottom: 50px;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
             font-weight: 700;
         }
 
-        /* Сетка преимуществ */
+        /* Инфографика: Карточки пользы */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-bottom: 60px;
         }
 
         .card {
-            background: white;
+            background: var(--white);
             padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 30px;
             border: 1px solid #f0f0f0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .icon-box {
-            width: 50px;
-            height: 50px;
-            background: var(--soft-purple);
-            border-radius: 12px;
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.07);
+        }
+
+        .icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            color: var(--accent-color);
+            margin-bottom: 25px;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        /* Секция Оплаты - Три в ряд */
+        .card h3 {
+            color: var(--deep-accent);
+            margin-bottom: 16px;
+            font-size: 1.6rem;
+        }
+
+        /* Блок курса: Инфографика списком */
+        .course-info {
+            background: var(--soft-purple);
+            border-radius: 50px;
+            padding: 80px 60px;
+            margin-bottom: 40px;
+        }
+
+        .info-step {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 20px;
+            margin-bottom: 35px;
+            align-items: center;
+        }
+
+        .step-num {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .step-content strong {
+            display: block;
+            font-size: 1.2rem;
+            color: var(--deep-accent);
+            margin-bottom: 4px;
+        }
+
+        /* Мастер-класс: Акцентный блок */
+        .masterclass-box {
+            background: var(--white);
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 60px;
+            border-radius: 40px;
+            margin: 60px 0;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .price-tag-large {
+            background: var(--soft-pink);
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+        }
+
+        /* Варианты оплаты: Объемные карточки */
         .price-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-            align-items: stretch;
-            padding: 20px 0;
         }
 
         .price-card {
-            background: linear-gradient(145deg, #ffffff, #f9f9f9);
-            border: 1px solid rgba(0,0,0,0.05);
-            padding: 60px 30px;
+            background: var(--white);
+            border: 1px solid #f0f0f0;
+            padding: 50px 30px;
             border-radius: 40px;
             text-align: center;
+            transition: 0.4s;
             position: relative;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            /* Глубокая объемная тень */
-            box-shadow: 
-                0 20px 40px rgba(0,0,0,0.06),
-                0 1px 3px rgba(0,0,0,0.05),
-                inset 0 1px 1px rgba(255,255,255,1);
-        }
-
-        /* Эффект стеклянного блика сверху */
-        .price-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 50%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, transparent 60%);
-            border-radius: 40px 40px 0 0;
-            pointer-events: none;
-        }
-
-        .price-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 35px 70px rgba(0,0,0,0.08);
-            border-color: var(--soft-purple);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.04);
         }
 
         .price-card.featured {
             background: linear-gradient(145deg, #ffffff, var(--soft-purple));
             border: 2px solid var(--accent-color);
             transform: scale(1.05);
-            z-index: 2;
+            box-shadow: 0 25px 50px rgba(0, 128, 128, 0.15);
         }
 
-        .price-card.featured:hover {
-            transform: scale(1.07) translateY(-10px);
-        }
-
-        .badge {
+        /* Стеклянный блик */
+        .price-card::after {
+            content: "";
             position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent-color);
-            color: white;
-            padding: 6px 20px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0, 128, 128, 0.4);
-        }
-
-        .price-card h3 {
-            font-size: 1.5rem;
-            color: var(--deep-accent);
-            margin-bottom: 10px;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%);
+            border-radius: 40px;
+            pointer-events: none;
         }
 
         .price-val {
-            font-size: 3.2rem;
+            font-size: 3rem;
             font-weight: 800;
-            color: #2d3436;
-            margin: 15px 0;
-            line-height: 1;
-            text-shadow: 1px 2px 4px rgba(0,0,0,0.05);
+            color: var(--deep-accent);
+            margin: 20px 0;
+            letter-spacing: -1px;
         }
 
         .price-val span {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #888;
             font-weight: 400;
         }
 
-        .price-desc {
-            font-size: 1rem;
-            color: #636e72;
-            margin-top: 20px;
-            line-height: 1.5;
+        /* Бонусы */
+        .bonus-section {
+            background: var(--soft-pink);
+            padding: 80px 60px;
+            border-radius: 50px;
+            margin: 60px 0;
         }
 
-        /* Кнопка в футере и герое */
+        .bonus-card {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(128, 0, 0, 0.05);
+        }
+
+        /* Кнопки */
         .btn {
             display: inline-block;
             background: var(--button-grad);
             color: var(--white);
-            padding: 18px 45px;
+            padding: 22px 55px;
             border-radius: 100px;
             text-decoration: none;
             font-weight: bold;
-            box-shadow: 0 8px 20px rgba(128, 0, 0, 0.25);
+            font-size: 1.15rem;
+            box-shadow: 0 10px 25px rgba(128, 0, 0, 0.3);
             transition: 0.3s;
             border: none;
             cursor: pointer;
         }
 
         .btn:hover {
-            box-shadow: 0 12px 30px rgba(128, 0, 0, 0.4);
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(128, 0, 0, 0.4);
         }
 
         footer {
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
             background: #fafafa;
             border-top: 1px solid #eee;
         }
 
         @media (max-width: 992px) {
-            .price-grid {
+            .price-grid, .masterclass-box {
                 grid-template-columns: 1fr;
-                max-width: 450px;
-                margin: 0 auto;
             }
-            .price-card.featured {
-                transform: none;
-            }
-            .price-card.featured:hover {
-                transform: translateY(-10px);
-            }
+            .price-card.featured { transform: none; }
+            h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -240,67 +314,135 @@
     <header class="hero">
         <div class="container">
             <h1>Заботливое образование</h1>
-            <p>Программирование на Scratch для детей. Учимся созидать через любовь и творчество.</p>
-            <a href="https://t.me/natali_nazarina" class="btn">Записаться на занятия</a>
+            <p>Программируем, играя — мыслим смело! Первые шаги в IT через создание мультфильмов и квестов.
+</p>
+            <a href="#prices" class="btn">Начать обучение</a>
         </div>
     </header>
 
     <main class="container">
-        
+
         <section class="section">
             <h2 class="section-title">Чему научится ребенок</h2>
             <div class="grid">
+                <!-- Карточка 1 -->
                 <div class="card">
-                    <div class="icon-box">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    <div class="icon-wrapper" style="background: var(--icon-grad-1);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                     </div>
-                    <h3>Логика кода</h3>
-                    <p>Ребенок изучит базовые понятия программирования, научится выстраивать последовательности действий, находить решения и не бояться сложных задач.</p>
+                    <h3>Логика и алгоритмы</h3>
+                    <p>Ребенок учится выстраивать последовательности действий, находить решения и не бояться сложных задач.</p>
                 </div>
+                <!-- Карточка 2 -->
                 <div class="card">
-                    <div class="icon-box">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path></svg>
+                    <div class="icon-wrapper" style="background: var(--icon-grad-2);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
                     </div>
-                    <h3>Дизайн и творчество</h3>
+                    <h3>Путь творца</h3>
                     <p>Вместо пассивного потребления контента ребенок создает свои игры, анимации и цифровые миры.</p>
                 </div>
+                <!-- Карточка 3 -->
                 <div class="card">
-                    <div class="icon-box">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <div class="icon-wrapper" style="background: var(--icon-grad-3);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                     </div>
-                    <h3>Собственные проекты</h3>
-                    <p>К концу курса у ребенка будет портфолио из созданных им игр.</p>
+                    <h3>Уверенность</h3>
+                    <p>Сложный код превращается в понятные блоки. Первый работающий проект готов уже на пробном занятии.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Варианты оплаты - Три в ряд без кнопок -->
-        <section id="payments" class="section">
+        <section class="section course-info">
+            <h2 class="section-title">Как устроено обучение</h2>
+            <div class="info-step">
+                <div class="step-num">01</div>
+                  <div class="step-check">✓</div>
+                <div class="step-content">
+                    <strong>Программа из 36 уроков</strong>
+                    Последовательное движение от основ к сложным многоуровневым играм.
+                </div>
+            </div>
+            <div class="info-step">
+                <div class="step-num">02</div>
+                  <div class="step-check">✓</div>
+                <div class="step-content">
+                    <strong>Индивидуальный темп</strong>
+                    3 резервных занятия включены в стоимость для глубокого закрепления тем.
+                </div>
+            </div>
+            <div class="info-step">
+                <div class="step-num">03</div>
+                  <div class="step-check">✓</div>
+                <div class="step-content">
+                    <strong>Практика в фокусе</strong>
+                    Создание анимаций и живых проектов на каждом уроке.
+                </div>
+            </div>
+            <div class="info-step">
+                <div class="step-num">04</div>
+                  <div class="step-check">✓</div>
+                <div class="step-content">
+                    <strong>Бережная поддержка</strong>
+                    Обучение через интерес, поддержку и уважение к личности ребенка.
+                </div>
+            </div>
+        </section>
+
+        <section class="section masterclass-box">
+            <div>
+                <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Пробный мастер-класс</h2>
+                <p style="margin-bottom: 30px; font-size: 1.2rem;">Возможность познакомиться с преподавателем и создать свой первый цифровой проект всего за один час.</p>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                        <span style="color: var(--accent-color); margin-right: 10px; font-weight: bold;">✓</span> Мини-игра своими руками
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                        <span style="color: var(--accent-color); margin-right: 10px; font-weight: bold;">✓</span> Знакомство с визуальным кодом
+                    </li>
+                </ul>
+            </div>
+            <div class="price-tag-large">
+                <div class="price-val" style="margin: 0; font-size: 4rem;">500 ₽</div>
+                <p style="color: var(--accent-color); font-weight: 700; margin: 15px 0 25px;">60 минут творчества</p>
+                <a href="#" class="btn" style="padding: 15px 40px;">Записаться</a>
+            </div>
+        </section>
+
+        <section id="prices" class="section">
             <h2 class="section-title">Варианты оплаты</h2>
             <div class="price-grid">
-                
-                <!-- Карточка 1 -->
                 <div class="price-card">
-                    <h3>Разово</h3>
-                    <div class="price-val">1 500₽ <span>/ урок</span></div>
-                    <p class="price-desc">При разовой оплате за каждое занятие.</p>
+                    <h3 style="color: var(--accent-color)">Разово</h3>
+                    <div class="price-val">1500 ₽</div>
+                    <p>Оплата за каждое отдельное занятие. Максимальная гибкость.</p>
                 </div>
-
-                <!-- Карточка 2 (Акцентная) -->
                 <div class="price-card featured">
-                    <div class="badge">Популярно</div>
+                    <div style="background: var(--accent-color); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-weight: bold; z-index: 5;">ПОПУЛЯРНО</div>
                     <h3>Абонемент</h3>
-                    <div class="price-val">1200₽ <span>/ урок</span></div>
-                    <p class="price-desc">При оплате занятий на месяц вперед</p>
+                    <div class="price-val">1200 ₽ <span>/ урок</span></div>
+                    <p>Оплата за месяц вперед. Самый эффективный формат обучения.</p>
                 </div>
-
-                <!-- Карточка 3 -->
                 <div class="price-card">
-                    <h3>Курс целиком</h3>
-                    <div class="price-val">1000₽ <span>/ урок</span></div>
-                    <p class="price-desc">Минимальная цена на всю программу (36 уроков).</p>
+                    <h3 style="color: var(--accent-color)">Курс целиком</h3>
+                    <div class="price-val">1000 ₽ <span>/ урок</span></div>
+                    <p>Минимальная цена на всю программу (36 уроков).</p>
                 </div>
+            </div>
+        </section>
 
+        <section class="section bonus-section">
+            <h2 class="section-title">Система лояльности</h2>
+            <div class="grid">
+                <div class="bonus-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 15px;">🤝</div>
+                    <h4>Для друзей</h4>
+                    <p>Скидка <strong>20%</strong> вам и вашим друзьям при записи по вашей рекомендации.</p>
+                </div>
+                <div class="bonus-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 15px;">🏠</div>
+                    <h4>Семейный доступ</h4>
+                    <p>Специальные условия при обучении второго ребенка из семьи.</p>
+                </div>
             </div>
         </section>
 
@@ -308,9 +450,9 @@
 
     <footer>
         <div class="container">
-            <p style="font-weight: bold; color: var(--deep-accent); font-size: 1.4rem;">Готовы начать?</p>
-            <p style="margin: 15px 0 35px; color: #636e72;">Напишите мне, чтобы записаться на пробное занятие или задать вопрос.</p>
-            <a href="https://t.me/natali_nazarina" class="btn">Написать в Telegram</a>
+            <p style="font-size: 1.8rem; color: var(--deep-accent); font-weight: 800; margin-bottom: 15px; letter-spacing: -0.5px;">Соберем первый рабочий проект вместе?</p>
+            <p style="margin-bottom: 40px; font-size: 1.1rem; color: #636e72;">Напишите мне, чтобы забронировать время для пробного занятия.</p>
+            <a href="#" class="btn">Написать в Telegram</a>
         </div>
     </footer>
 
